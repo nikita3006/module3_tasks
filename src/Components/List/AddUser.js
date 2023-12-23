@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "../UI/Button";
 import "./AddUser.css";
 import Card from "../UI/Card";
+import { Fragment } from "react";
 
 const AddUser = () => {
   const [User, setUser] = useState([]);
@@ -55,7 +56,7 @@ const AddUser = () => {
   };
 
   return (
-    <>
+    <React.Fragment> 
       <form onSubmit={submitHandler} className="formControl">
         <p>New User form</p>
         <hr />
@@ -105,7 +106,7 @@ const AddUser = () => {
         </ul>
         <hr />
       </div>
-    </>
+     </React.Fragment>
   );
 };
 
