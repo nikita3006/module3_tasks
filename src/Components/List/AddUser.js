@@ -1,8 +1,7 @@
-import React, { useState, Fragment, useRef } from "react";
+import { useState } from "react";
 import Button from "../UI/Button";
 import "./AddUser.css";
 import Card from "../UI/Card";
-// import { Fragment } from "react";
 
 const AddUser = () => {
   const [User, setUser] = useState([]);
@@ -10,15 +9,10 @@ const AddUser = () => {
   const [Age, setAge] = useState("");
   const [Error, setError] = useState("");
   const [isValid, setIsValid] = useState(true);
-  const clgNameInputRef = useRef();
-  
 
   const submitHandler = (event) => {
     event.preventDefault();
-    // console.log(clgNameInputRef.current.value);
-    const value  = clgNameInputRef.current.value;
-    const newUser = { Username, Age , value };
-    
+    const newUser = { Username, Age };
 
     if (Username.trim().length === 0 && Age.trim().length === 0) {
       setError("Please fill the form.");
@@ -41,14 +35,13 @@ const AddUser = () => {
     }
     setUsername("");
     setAge("");
-    clgNameInputRef.current.value ="";
   };
 
   const errorOkay = (e) => {
     e.preventDefault();
     setIsValid(true);
     setAge("");
-    setUsername("");    
+    setUsername("");
   };
 
   const usernameChange = (event) => {
@@ -59,23 +52,19 @@ const AddUser = () => {
   const ageChange = (event) => {
     setAge(event.target.value);
     setIsValid(true);
-  }; 
+  };
 
   return (
-    <Fragment> 
+    <>
       <form onSubmit={submitHandler} className="formControl">
         <p>New User form</p>
         <hr />
         <label htmlFor="Username">Username :</label>
         <input type="text" value={Username} onChange={usernameChange} />
         <br />
-       
+        <br />
         <label htmlFor="age">Age :</label>
         <input type="number" value={Age} onChange={ageChange} /> <br />
-        <label htmlFor="Collegename">Collegename :</label>
-        <input type="text"  ref={clgNameInputRef}  />
-        <br />
-
         <Button type="submit">Add User</Button>
       </form>
 
@@ -110,13 +99,13 @@ const AddUser = () => {
         <ul className="listBox">
           {User.map((user, index) => (
             <li className="list" key={index}>
-              {user.Username}({user.Age} years old, in {user.value} clg)
+              {user.Username}({user.Age} years old.)
             </li>
           ))}
         </ul>
         <hr />
       </div>
-     </Fragment>
+    </>
   );
 };
 
